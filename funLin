@@ -1,0 +1,3 @@
+#!/bin/bash
+
+maude.linux64 -no-banner -allow-files fun-io

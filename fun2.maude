@@ -36,8 +36,10 @@ fmod FUN-GRM is
      inc FLOAT .
      inc STRING .
      inc BOOL .
-     sorts Expr Idn Val .
-     subsort Idn Val < Expr .  
+     sorts Expr Idn Val IdnList ExprList .
+     subsort Idn < IdnList .
+     subsort Idn Val < Expr .
+     subsort Expr < ExprList .
      op idn : Qid -> Idn .
      op rat : Rat -> Val .
      op flo : Float -> Val .
@@ -46,9 +48,9 @@ fmod FUN-GRM is
      ops _+_ _*_ _-_ _/_ _==_ _<_ _<=_ _>_ _>=_ _or_ _and_ : Expr Expr -> Expr [gather(E e) prec 20] .
      op ~_ : Expr -> Expr .
      op if_then_else_ : Expr Expr Expr -> Expr [prec 40] .
-     op fun_(_) =_ : Idn Idn Expr -> Expr [prec 50] .
-     op _(_) : Idn Expr -> Expr [prec 10] . 
-     op _,_ : Expr Expr -> Expr [prec 60 assoc] .
+     op fun_(_) =_ : Idn IdnList Expr -> Expr [prec 50] .
+     op _(_) : Idn ExprList -> Expr [prec 10] . 
+     op _,_ : ExprList ExprList -> ExprList [prec 60 assoc] .
  endfm 
 
 fmod FUN-PARSER is 
